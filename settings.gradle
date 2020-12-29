@@ -1,2 +1,4 @@
+include ':models'
+include ':network'
 include ':app'
 rootProject.name = "IBrewer"

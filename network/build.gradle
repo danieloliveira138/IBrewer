@@ -1,32 +1,18 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-android {
-
-    defaultConfig {
-        applicationId "com.catra.ibrewer"
-    }
-
-}
-
 dependencies {
-    api project(path: ':network')
     api project(path: ':models')
 
     implementation retrofit
+    implementation gson
+    implementation log_interceptor
     implementation kotlin_std
     implementation ktx
     implementation appcompat
-    implementation constraint_layout
-    implementation koin_core
-    implementation koin_scope
-    implementation koin_viewmodel
-    implementation koin_test
-    implementation timber
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
-
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
