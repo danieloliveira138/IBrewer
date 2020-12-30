@@ -24,6 +24,9 @@ dependencies {
     implementation koin_viewmodel
     implementation koin_test
     implementation timber
+    implementation simple_recycler
+    implementation glide
+    implementation cardview
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
 

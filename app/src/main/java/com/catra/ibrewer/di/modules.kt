@@ -1,17 +1,18 @@
 package com.catra.ibrewer.di
 
-import com.catra.network.BuildConfig.PUNK_API_BASE_URL
-import com.catra.network.BuildConfig.PUNK_API_VERSION
-import com.catra.network.api.PunkApi
-import com.catra.network.config.NetworkConfig
+import com.catra.ibrewer.screens.main.MainUseCase
+import com.catra.ibrewer.screens.main.MainViewModel
+import com.catra.ibrewer.utils.ProviderContext
+import com.catra.network.provider.provideBeerApi
 import com.catra.network.repository.BeerRepository
 import org.koin.dsl.module
 
 val appModule = module {
     single {
-        NetworkConfig.provideApi("$PUNK_API_BASE_URL$PUNK_API_VERSION", PunkApi::class.java)
+        provideBeerApi()
     }
-    single {
-        BeerRepository(get())
-    }
+    single { BeerRepository(get()) }
+    single { MainUseCase(get(), get()) }
+    single { MainViewModel(get(), get()) }
+    single { ProviderContext() }
 }

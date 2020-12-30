@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">IBrewer</string>
+    <string name="ibu_label">IBU %1$.2f</string>
 </resources>

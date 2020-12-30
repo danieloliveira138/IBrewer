@@ -3,7 +3,7 @@ package com.catra.models
 import com.google.gson.annotations.SerializedName
 
 data class MashTempItem(
-    @SerializedName("duration") val duration: Int? = 0,
+    @SerializedName("duration") val duration: Double,
 
-    @SerializedName("temp") val temp: Temp?
+    @SerializedName("temp") val temp: Temp
 )

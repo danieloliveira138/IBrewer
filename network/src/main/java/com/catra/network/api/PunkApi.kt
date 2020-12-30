@@ -15,7 +15,7 @@ interface PunkApi {
     suspend fun fetchBeers(
         @Query(BuildConfig.BEERS_API_PAGE) page: Int,
         @Query(BuildConfig.BEERS_API_OFFSET) offset: Int
-    ): List<Beer>
+    ): ArrayList<Beer>
 
     @GET(BEER_API)
     suspend fun fetchBeer(

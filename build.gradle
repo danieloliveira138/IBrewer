@@ -17,6 +17,13 @@ buildscript {
     }
 }
 
+allprojects {
+    repositories {
+        google()
+        maven { url 'https://jitpack.io' }
+    }
+}
+
 subprojects {
     afterEvaluate { project ->
         if (project.plugins.findPlugin('android') ?: project.plugins.findPlugin('android-library')
@@ -65,8 +72,8 @@ subprojects {
                         testCoverageEnabled true
 
                         buildConfigField 'String', 'PUNK_API_BASE_URL', '"https://api.punkapi.com"'
-                        buildConfigField 'String', 'PUNK_API_VERSION', '"/2"'
-                        buildConfigField 'String', 'BEERS_API', '"/beers"'
+                        buildConfigField 'String', 'PUNK_API_VERSION', '"/v2/"'
+                        buildConfigField 'String', 'BEERS_API', '"beers"'
                         buildConfigField 'String', 'BEER_ID', '"/{beer_id}"'
                         buildConfigField 'String', 'BEER_API', '"$BEERS_API$BEER_ID"'
                         buildConfigField 'String', 'BEERS_API_PAGE', '"page"'
@@ -81,8 +88,8 @@ subprojects {
                         }
 
                         buildConfigField 'String', 'PUNK_API_BASE_URL', '"https://api.punkapi.com"'
-                        buildConfigField 'String', 'PUNK_API_VERSION', '"/2"'
-                        buildConfigField 'String', 'BEERS_API', '"/beers"'
+                        buildConfigField 'String', 'PUNK_API_VERSION', '"/v2/"'
+                        buildConfigField 'String', 'BEERS_API', '"beers"'
                         buildConfigField 'String', 'BEER_ID', '"/{beer_id}"'
                         buildConfigField 'String', 'BEER_API', '"$BEERS_API$BEER_ID"'
                         buildConfigField 'String', 'BEERS_API_PAGE', '"page"'
@@ -128,6 +135,9 @@ ext {
     log_interceptor_version = "4.9.0"
     koin_version = '2.2.0'
     timber_version = "4.7.1"
+    simple_recycler_version = '0.1.0'
+    glide_version = '4.11.0'
+    cardview_version = '1.0.0'
 
     // references
     retrofit = "com.squareup.retrofit2:retrofit:$retrofit_version"
@@ -142,4 +152,7 @@ ext {
     koin_viewmodel = "org.koin:koin-androidx-viewmodel:$koin_version"
     koin_test = "org.koin:koin-test:$koin_version"
     timber = "com.jakewharton.timber:timber:$timber_version"
+    simple_recycler = "com.github.danieloliveira138:SimpleRecycler:$simple_recycler_version"
+    glide = "com.github.bumptech.glide:glide:$glide_version"
+    cardview = "androidx.cardview:cardview:$cardview_version"
 }
