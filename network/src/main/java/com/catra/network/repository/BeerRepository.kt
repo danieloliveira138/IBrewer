@@ -9,7 +9,7 @@ class BeerRepository(private val api: PunkApi) {
         api.fetchBeers(page = page, offset = offset)
     }
 
-    suspend fun fetchBeer(id: Int) {
+    suspend fun fetchBeer(id: Int) = safeApiCall {
         api.fetchBeer(id = id)
     }
 }

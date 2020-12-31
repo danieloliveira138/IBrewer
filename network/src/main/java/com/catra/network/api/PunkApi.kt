@@ -2,7 +2,6 @@ package com.catra.network.api
 
 import com.catra.models.Beer
 import com.catra.network.BuildConfig
-import com.catra.network.BuildConfig.BEER_API
 import com.catra.network.BuildConfig.BEERS_API
 import com.catra.network.BuildConfig.BEER_ID
 import retrofit2.http.GET
@@ -15,10 +14,10 @@ interface PunkApi {
     suspend fun fetchBeers(
         @Query(BuildConfig.BEERS_API_PAGE) page: Int,
         @Query(BuildConfig.BEERS_API_OFFSET) offset: Int
-    ): ArrayList<Beer>
+    ): List<Beer>
 
-    @GET(BEER_API)
+    @GET("$BEERS_API$BEER_ID")
     suspend fun fetchBeer(
-        @Path(BEER_ID) id: Int
-    ): Beer
+        @Path("beer_id") id: Int
+    ): List<Beer>
 }

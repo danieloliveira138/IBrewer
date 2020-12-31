@@ -44,4 +44,13 @@ data class Beer(
     @SerializedName("ibu") val ibu: Double = 0.0,
 
     @SerializedName("brewers_tips") val brewersTips: String = ""
-)
+) {
+
+    val descriptionList get() = listOf(
+        "Nome" to name,
+        "Slogan" to tagline,
+        "Teor Alcoólico" to abv.toString(),
+        "Escala de Amargor" to ibu.toString(),
+        "Descrição" to description
+    )
+}

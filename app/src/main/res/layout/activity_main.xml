@@ -7,16 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".screens.main.MainActivity">
 
-    <com.catra.simple_recycler.SimpleRecycler
-        android:id="@+id/recyclerBeer"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:item_layout="@layout/beer_list_itemview"
-        app:layout_manager="linear_layout"
-        app:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+    <fragment
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:defaultNavHost="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:navGraph="@navigation/navigation_graph" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
