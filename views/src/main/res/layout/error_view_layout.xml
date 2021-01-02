@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/errorViewRootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/background_light"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/errorAdvise"
+    style="@style/error_element_style"
+    android:gravity="center"
+    android:layout_marginBottom="@dimen/error_screen_default_margin"
+    tools:text="@tools:sample/full_names"
+    android:textSize="@dimen/text_advise_size"
+    app:layout_constraintBottom_toTopOf="@id/tryAgainButton"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"/>
+
+<androidx.appcompat.widget.AppCompatImageButton
+    android:id="@+id/tryAgainButton"
+    style="@style/error_element_style"
+    android:elevation="2dp"
+    android:backgroundTint="@color/colorAccent"
+    android:src="@drawable/ic_baseline_replay_24"
+    android:layout_marginBottom="@dimen/error_screen_default_margin"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="name">Nome</string>
+    <string name="tagline">Slogan</string>
+    <string name="abv">Teor Alcoólico</string>
+    <string name="ibu">Escala de amargor</string>
+    <string name="description">Descrição</string>
+</resources>

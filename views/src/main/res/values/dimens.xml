@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="error_screen_default_margin">48dp</dimen>
+    <dimen name="progress_circular_size">56dp</dimen>
+    <dimen name="text_advise_size">20sp</dimen>
+</resources>

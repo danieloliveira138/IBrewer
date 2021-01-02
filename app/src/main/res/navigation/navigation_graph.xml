@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/beerListFragment">
+
+    <fragment
+        android:id="@+id/beerListFragment"
+        android:name="com.catra.ibrewer.ui.main.pages.list.BeerListFragment"
+        android:label="beer_list_fragment"
+        tools:layout="@layout/beer_list_fragment">
+        <action
+            android:id="@+id/action_beerListFragment_to_beerFragment"
+            app:destination="@id/beerFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"
+            app:launchSingleTop="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/beerFragment"
+        android:name="com.catra.ibrewer.ui.main.pages.details.BeerFragment"
+        android:label="beer_fragment"
+        tools:layout="@layout/beer_fragment" >
+        <argument
+            android:name="beer_id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+</navigation>

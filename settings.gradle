@@ -1,2 +1,6 @@
+include ':views'
+include ':custom-ui'
+include ':models'
+include ':network'
 include ':app'
 rootProject.name = "IBrewer"

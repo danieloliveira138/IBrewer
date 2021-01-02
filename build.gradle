@@ -1,13 +1,19 @@
+import com.sun.org.apache.bcel.internal.util.ClassPath
+import com.sun.org.apache.xalan.internal.Version
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.kotlin_version = "1.3.72"
+    ext.kotlin_version = '1.3.72'
+    ext.gradle_version = '4.0.2'
+    ext.nav_version = "2.3.2"
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.0.1"
+        classpath "com.android.tools.build:gradle:$gradle_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -18,9 +24,153 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+subprojects {
+    afterEvaluate { project ->
+        if (project.plugins.findPlugin('android') ?: project.plugins.findPlugin('android-library')
+                ?: project.plugins.findPlugin('com.android.dynamic-feature')) {
+
+            android {
+                compileSdkVersion compile_sdk_version
+                buildToolsVersion build_tools_version
+
+                compileOptions {
+                    sourceCompatibility 1.8
+                    targetCompatibility 1.8
+                }
+
+                packagingOptions {
+                    exclude 'META-INF/*.kotlin_module'
+                }
+
+                kotlinOptions {
+                    jvmTarget = "1.8"
+                }
+
+                androidExtensions {
+                    experimental = true
+                }
+
+                defaultConfig {
+                    minSdkVersion min_sdk_version
+                    targetSdkVersion target_sdk_version
+                    versionCode version_code
+                    versionName version_name
+                }
+
+                buildTypes {
+                    debug {
+                        debuggable true
+                        if (project.name.contains("app")) {
+                            applicationIdSuffix ".debug"
+                        }
+                        testCoverageEnabled true
+
+                        buildConfigField 'String', 'PUNK_API_BASE_URL', '"https://api.punkapi.com"'
+                        buildConfigField 'String', 'PUNK_API_VERSION', '"/v2/"'
+                        buildConfigField 'String', 'BEERS_API', '"beers"'
+                        buildConfigField 'String', 'BEER_ID', '"/{beer_id}"'
+                        buildConfigField 'String', 'BEERS_API_PAGE', '"page"'
+                        buildConfigField 'String', 'BEERS_API_OFFSET', '"per_page"'
+                    }
+                    release {
+                        debuggable false
+                        shrinkResources false
+                        if (!project.plugins.findPlugin('com.android.dynamic-feature')) {
+                            minifyEnabled true
+                            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+                        }
+
+                        buildConfigField 'String', 'PUNK_API_BASE_URL', '"https://api.punkapi.com"'
+                        buildConfigField 'String', 'PUNK_API_VERSION', '"/v2/"'
+                        buildConfigField 'String', 'BEERS_API', '"beers"'
+                        buildConfigField 'String', 'BEER_ID', '"/{beer_id}"'
+                        buildConfigField 'String', 'BEERS_API_PAGE', '"page"'
+                        buildConfigField 'String', 'BEERS_API_OFFSET', '"per_page"'
+                    }
+                }
+
+                flavorDimensions "default"
+
+                testOptions {
+                    unitTests {
+                        includeAndroidResources = true
+                    }
+                }
+            }
+        }
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    // versions
+    compile_sdk_version = 30
+    build_tools_version = "30.0.2"
+    min_sdk_version = 21
+    target_sdk_version = 30
+    version_code = 1
+    version_name = '1.0.0'
+    retrofit_version = '2.8.1'
+    ktx_version = '1.3.2'
+    appcompat_version = '1.2.0'
+    constraint_version = '2.0.4'
+    log_interceptor_version = "4.9.0"
+    koin_version = '2.2.0'
+    timber_version = "4.7.1"
+    simple_recycler_version = '0.1.0'
+    glide_version = '4.11.0'
+    cardview_version = '1.0.0'
+    navigation_compose_version = "1.0.0-alpha04"
+
+    junit_version = '4.13'
+    androidx_test_runner_version = '1.1.0'
+    junit_test_version = '1.1.2'
+    espresso_core_version = '3.3.0'
+    espresso_intents_version = '3.1.0'
+    test_rules_version = '1.1.0'
+    barista_version = '3.7.0'
+    mokk_version = '1.10.4'
+    androidx_core_test_version = '2.1.0'
+    coroutines_test_version = '1.4.2'
+
+    // references
+    retrofit = "com.squareup.retrofit2:retrofit:$retrofit_version"
+    gson = "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    log_interceptor = "com.squareup.okhttp3:logging-interceptor:$log_interceptor_version"
+    kotlin_std = "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    ktx = "androidx.core:core-ktx:$ktx_version"
+    appcompat = "androidx.appcompat:appcompat:$appcompat_version"
+    constraint_layout = "androidx.constraintlayout:constraintlayout:$constraint_version"
+    koin_core = "org.koin:koin-android:$koin_version"
+    koin_scope = "org.koin:koin-androidx-scope:$koin_version"
+    koin_viewmodel = "org.koin:koin-androidx-viewmodel:$koin_version"
+    koin_test = "org.koin:koin-test:$koin_version"
+    timber = "com.jakewharton.timber:timber:$timber_version"
+    simple_recycler = "com.github.danieloliveira138:SimpleRecycler:$simple_recycler_version"
+    glide = "com.github.bumptech.glide:glide:$glide_version"
+    cardview = "androidx.cardview:cardview:$cardview_version"
+
+    fragment_navigation = "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    navigation_ui = "androidx.navigation:navigation-ui-ktx:$nav_version"
+    navigation = "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+    navigation_compose = "androidx.navigation:navigation-compose:$navigation_compose_version"
+
+    junit = "junit:junit:$junit_version"
+    junit_test = "androidx.test.ext:junit:$junit_test_version"
+    koin_test = "org.koin:koin-test:$koin_version"
+    espresso_core = "androidx.test.espresso:espresso-core:$espresso_core_version"
+    espresso_intents = "androidx.test.espresso:espresso-intents:$espresso_intents_version"
+    test_runner = "androidx.test:runner:$androidx_test_runner_version"
+    test_rules = "androidx.test:rules:$test_rules_version"
+    barista = "com.schibsted.spain:barista:$barista_version"
+    mokk = "io.mockk:mockk:$mokk_version"
+    androidx_core_test = "androidx.arch.core:core-testing:$androidx_core_test_version"
+    coroutines_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
 }
