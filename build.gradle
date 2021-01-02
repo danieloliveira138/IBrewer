@@ -129,6 +129,17 @@ ext {
     cardview_version = '1.0.0'
     navigation_compose_version = "1.0.0-alpha04"
 
+    junit_version = '4.13'
+    androidx_test_runner_version = '1.1.0'
+    junit_test_version = '1.1.2'
+    espresso_core_version = '3.3.0'
+    espresso_intents_version = '3.1.0'
+    test_rules_version = '1.1.0'
+    barista_version = '3.7.0'
+    mokk_version = '1.10.4'
+    androidx_core_test_version = '2.1.0'
+    coroutines_test_version = '1.4.2'
+
     // references
     retrofit = "com.squareup.retrofit2:retrofit:$retrofit_version"
     gson = "com.squareup.retrofit2:converter-gson:$retrofit_version"
@@ -150,4 +161,16 @@ ext {
     navigation_ui = "androidx.navigation:navigation-ui-ktx:$nav_version"
     navigation = "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
     navigation_compose = "androidx.navigation:navigation-compose:$navigation_compose_version"
+
+    junit = "junit:junit:$junit_version"
+    junit_test = "androidx.test.ext:junit:$junit_test_version"
+    koin_test = "org.koin:koin-test:$koin_version"
+    espresso_core = "androidx.test.espresso:espresso-core:$espresso_core_version"
+    espresso_intents = "androidx.test.espresso:espresso-intents:$espresso_intents_version"
+    test_runner = "androidx.test:runner:$androidx_test_runner_version"
+    test_rules = "androidx.test:rules:$test_rules_version"
+    barista = "com.schibsted.spain:barista:$barista_version"
+    mokk = "io.mockk:mockk:$mokk_version"
+    androidx_core_test = "androidx.arch.core:core-testing:$androidx_core_test_version"
+    coroutines_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
 }

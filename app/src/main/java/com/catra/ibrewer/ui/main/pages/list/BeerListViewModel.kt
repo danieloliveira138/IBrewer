@@ -2,9 +2,11 @@ package com.catra.ibrewer.ui.main.pages.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.catra.ibrewer.ui.BaseViewModel
 import com.catra.ibrewer.utils.FlowState
+import com.catra.ibrewer.utils.ProviderContext
 import com.catra.ibrewer.utils.extensions.postError
 import com.catra.ibrewer.utils.extensions.postLoading
 import com.catra.ibrewer.utils.extensions.postSuccess
@@ -12,15 +14,16 @@ import com.catra.models.Beer
 import kotlinx.coroutines.launch
 
 class BeerListViewModel(
-    private val useCase: BeerListUseCase
-) : BaseViewModel() {
+    private val useCase: BeerListUseCase,
+    private val providerContext: ProviderContext
+) : ViewModel() {
 
     private val _beerListLiveData = MutableLiveData<FlowState<List<Beer>>>()
     val beerListLiveData: LiveData<FlowState<List<Beer>>> = _beerListLiveData
     val beerList: MutableList<Beer> = mutableListOf()
 
     fun fetchBeers(firstPage: Boolean) {
-        viewModelScope.launch(mainContext) {
+        viewModelScope.launch(providerContext.main) {
             _beerListLiveData.postLoading(true)
 
             useCase.fetchBeers(

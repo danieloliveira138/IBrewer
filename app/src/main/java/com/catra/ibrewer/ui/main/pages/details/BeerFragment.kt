@@ -39,14 +39,16 @@ class BeerFragment : BaseFragment() {
     private fun setupUI(beer: Beer) = with(beer) {
         beerImage bind imageUrl
         collapsingToolbar bind beer.name
+        val beerDescriptionList = beer.descriptionList(requireContext())
+
         recyclerBeerDetails.listBuilder(
-            itemCount = beer.descriptionList.size,
+            itemCount = beerDescriptionList.size,
             builder = { view, position ->
                 with(view) {
                     if (position == 0) {
                         findViewById<View>(R.id.topDivider).visibility = View.GONE
                     }
-                    val (label, description) = beer.descriptionList[position]
+                    val (label, description) = beerDescriptionList[position]
                     findViewById<TextView>(R.id.label) bind label
                     findViewById<TextView>(R.id.description) bind description
                 }

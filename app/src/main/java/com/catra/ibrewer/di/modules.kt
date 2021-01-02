@@ -5,6 +5,7 @@ import com.catra.ibrewer.ui.main.pages.details.BeerUseCase
 import com.catra.ibrewer.ui.main.pages.details.BeerViewModel
 import com.catra.ibrewer.ui.main.pages.list.BeerListUseCase
 import com.catra.ibrewer.ui.main.pages.list.BeerListViewModel
+import com.catra.ibrewer.utils.ProviderContext
 import com.catra.network.api.PunkApi
 import com.catra.network.config.provideApi
 import com.catra.network.repository.BeerRepository
@@ -19,8 +20,9 @@ val appModule = module {
         )
     }
     single { BeerRepository(get()) }
-    single { BeerListUseCase(get()) }
-    viewModel { BeerListViewModel(get()) }
-    single { BeerUseCase(get()) }
-    viewModel { (id: Int) -> BeerViewModel(id, get()) }
+    single { BeerListUseCase(get(), get()) }
+    viewModel { BeerListViewModel(get(), get()) }
+    single { BeerUseCase(get(), get()) }
+    viewModel { (id: Int) -> BeerViewModel(id, get(), get()) }
+    single { ProviderContext() }
 }

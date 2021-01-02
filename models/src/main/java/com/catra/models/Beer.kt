@@ -1,5 +1,6 @@
 package com.catra.models
 
+import android.content.Context
 import com.google.gson.annotations.SerializedName
 
 data class Beer(
@@ -7,7 +8,7 @@ data class Beer(
 
     @SerializedName("attenuation_level") val attenuationLevel: Double = 0.0,
 
-    @SerializedName("method") val method: Method,
+    @SerializedName("method") val method: Method?,
 
     @SerializedName("target_og") val targetOg: Double = 0.0,
 
@@ -46,11 +47,13 @@ data class Beer(
     @SerializedName("brewers_tips") val brewersTips: String = ""
 ) {
 
-    val descriptionList get() = listOf(
-        "Nome" to name,
-        "Slogan" to tagline,
-        "Teor Alcoólico" to abv.toString(),
-        "Escala de Amargor" to ibu.toString(),
-        "Descrição" to description
-    )
+    fun descriptionList(context: Context): List<Pair<String, String>> = context.run {
+        return listOf(
+            getString(R.string.name) to name,
+            getString(R.string.tagline) to tagline,
+            getString(R.string.abv) to "$abv%",
+            getString(R.string.ibu) to ibu.toString(),
+            getString(R.string.description) to description
+        )
+    }
 }

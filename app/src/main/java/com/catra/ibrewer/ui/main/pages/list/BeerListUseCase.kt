@@ -1,6 +1,6 @@
 package com.catra.ibrewer.ui.main.pages.list
 
-import com.catra.ibrewer.ui.BaseUseCase
+import com.catra.ibrewer.utils.ProviderContext
 import com.catra.models.Beer
 import com.catra.network.repository.BeerRepository
 import com.catra.network.utils.ResultType
@@ -10,8 +10,9 @@ import kotlinx.coroutines.withContext
 private const val OFFSET = 10
 
 class BeerListUseCase(
-    private val repository: BeerRepository
-) : BaseUseCase() {
+    private val repository: BeerRepository,
+    private val providerContext: ProviderContext
+) {
 
     private var page = 0
 
@@ -24,7 +25,7 @@ class BeerListUseCase(
 
         var result: ResultType<List<Beer>>?
 
-        withContext(ioContext) {
+        withContext(providerContext.io) {
             result = repository.fetchBeerList(page, OFFSET)
         }
 
