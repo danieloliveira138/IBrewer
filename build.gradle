@@ -55,12 +55,6 @@ subprojects {
                 }
 
                 defaultConfig {
-                    if (project.name.contains("app")) {
-                        applicationId "br.com.lopes.agent"
-                        testInstrumentationRunner "br.com.lopes.config.LopesTestRunner"
-                    } else {
-                        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-                    }
                     minSdkVersion min_sdk_version
                     targetSdkVersion target_sdk_version
                     versionCode version_code

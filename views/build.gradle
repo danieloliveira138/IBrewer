@@ -3,16 +3,13 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 dependencies {
-    api project(path: ':models')
-
-    implementation retrofit
-    implementation gson
-    implementation log_interceptor
     implementation kotlin_std
     implementation ktx
+    implementation appcompat
+    implementation constraint_layout
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }

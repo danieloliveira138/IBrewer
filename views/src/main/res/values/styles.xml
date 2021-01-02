@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="error_element_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/error_screen_default_margin</item>
+        <item name="android:layout_marginEnd">@dimen/error_screen_default_margin</item>
+    </style>
+
+    <style name="error_button" parent="TextAppearance.AppCompat.Widget.Button.Borderless.Colored">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/error_screen_default_margin</item>
+        <item name="android:layout_marginEnd">@dimen/error_screen_default_margin</item>
+    </style>
+</resources>

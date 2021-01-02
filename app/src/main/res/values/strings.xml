@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">IBrewer</string>
     <string name="ibu_label">IBU %1$.2f</string>
+    <string name="generic_error">Ops… Erros acontecem.\nNossos servidores voltarão em breve\n\n\nTentar novamente?</string>
 </resources>
