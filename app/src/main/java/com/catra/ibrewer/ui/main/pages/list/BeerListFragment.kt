@@ -72,7 +72,7 @@ class BeerListFragment : BaseFragment() {
                 showError()
             },
             onLoading = {
-                recyclerBeer.isRefreshLoading(it)
+                if (!it) recyclerBeer.isRefreshLoading(it)
             }
         )
     }
